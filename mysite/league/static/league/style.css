@@ -1,0 +1,15 @@
+a {
+    color: black;
+}
+
+body {
+    background: white url("images/background.jpg") no-repeat;
+    background-size: cover;
+}
+
+#wraper{
+    background: whitesmoke;
+    opacity: 50%;
+    display: grid;
+    align-items: start;
+}
