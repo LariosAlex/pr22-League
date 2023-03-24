@@ -2,8 +2,8 @@
 {% block content %}
     <h1>{{ league.name }}</h1>
     <ul>
-        <li><a href=""></A>CLASIFICATION</a></li>
-        <li><a href=""></A>MATCHES</a></li>
-        <li><a href=""></A>TEAMS</a></li>
+        <li><a href="">CLASIFICATION</a></li>
+        <li><a href="{% url 'league:matches' league.id %}">MATCHES</a></li>
+        <li><a href="">TEAMS</a></li>
     </ul>
 {% endblock %}

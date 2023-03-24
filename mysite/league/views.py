@@ -22,3 +22,9 @@ def infoMatch(request, match_id):
     return render(request, 'league/infoMatch.html', {
         'match': match
     })
+
+def leagueMatches(request, league_id):
+    league = get_object_or_404(Competition, pk=league_id)
+    return render(request, 'league/leagueMatches.html', {
+        'league': league
+    })
