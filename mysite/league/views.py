@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import *
 from django.shortcuts import get_object_or_404, render
-
+from django.utils import timezone
 
 # Create your views here.
 def leagues(request):
@@ -27,4 +27,35 @@ def leagueMatches(request, league_id):
     league = get_object_or_404(Competition, pk=league_id)
     return render(request, 'league/leagueMatches.html', {
         'league': league
+    })
+
+def clasification(request, league_id):
+    league = get_object_or_404(Competition, pk=league_id)
+    matches = Match.objects.filter(league_id = league_id)
+    teams = [team for team in league.teams.all()]
+    dict_teams = {}
+    for team in teams:
+        dict_teams[team.name] = 0
+    
+    teams_puntuation = []
+
+    for match in matches:
+        goal_local = match.event_set.filter(eventType=Event.EventsInMatch.GOAL, team=match.local).count()
+        goal_visitant = match.event_set.filter(eventType=Event.EventsInMatch.GOAL, team=match.visitant).count()
+        if(goal_local > goal_visitant):
+            dict_teams[match.local.name] = dict_teams[match.local.name] + 3
+        elif(goal_local < goal_visitant):
+            dict_teams[match.visitant.name] = dict_teams[match.visitant.name] + 3
+        else:
+            dict_teams[match.local.name] = dict_teams[match.local.name] + 1
+            dict_teams[match.visitant.name] = dict_teams[match.visitant.name] + 1
+
+    for team, points in dict_teams.items():
+        teams_puntuation.append([team, points])
+
+    clasification_order = sorted(teams_puntuation, key=lambda team: team[1], reverse=True)
+
+    return render(request, 'league/clasification.html', {
+        'league': league,
+        'teams': clasification_order,
     })

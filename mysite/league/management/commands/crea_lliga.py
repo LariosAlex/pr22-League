@@ -4,6 +4,7 @@ from faker import Faker
 from datetime import timedelta
 from random import randint
 
+
 from league.models import *
 
 faker = Faker(["es_CA","es_ES"])
@@ -56,3 +57,16 @@ class Command(BaseCommand):
                     partit.visitant = visitant
                     partit.league = lliga
                     partit.save()
+
+                    gols_local = randint(0,10)
+                    gols_visitant = randint(0,10)
+
+                    for goal in range(gols_local):
+                        player = partit.local.players.all().order_by('?').first()
+                        event = Event(match=partit,team=local,player=player,eventType=Event.EventsInMatch.GOAL)
+                        event.save()
+
+                    for goal in range(gols_visitant):
+                        player = partit.local.players.all().order_by('?').first()
+                        event = Event(match=partit,team=visitant,player=player,eventType=Event.EventsInMatch.GOAL)
+                        event.save()

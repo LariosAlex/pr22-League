@@ -1,0 +1,13 @@
+{% extends "league/base.html" %}
+
+{% block content %}
+    {% if teams %}
+        <ol>
+        {% for team in teams %}
+            <li>{{ team.0 }} - {{ team.1 }}</li>
+        {% endfor %}
+        </ol>
+    {% else %}
+        <p>No teams are available.</p>
+    {% endif %}
+{% endblock %}

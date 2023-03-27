@@ -1,13 +1,11 @@
 {% extends "league/base.html" %}
 
 {% block content %}
-    {% if league.teams %}
-        <ul>
-        {% for team in league.teams.all %}
-        <li><a href="">{{ team.name }}</a></li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>No leagues are available.</p>
-    {% endif %}
+    {% for match in Match.objects.filter(league = league) %}
+        {% if league.matchs %}
+            <p>Matches are available.</p>
+        {% else %}
+            <p>No matches are available.</p>
+        {% endif %}
+    {% endfor %}
 {% endblock %}

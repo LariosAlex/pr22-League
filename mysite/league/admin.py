@@ -31,7 +31,7 @@ class MatchAdmin(admin.ModelAdmin):
     readonly_fields = ["resultat",]
     def resultat(self,obj):
         goal_local = obj.event_set.filter(eventType=Event.EventsInMatch.GOAL, team=obj.local).count()
-        goal_visit = obj.event_set.filter(eventType=Event.EventsInMatch.GOAL, team=obj.visitant).coun
+        goal_visit = obj.event_set.filter(eventType=Event.EventsInMatch.GOAL, team=obj.visitant).count()
         return "{} - {}".format(goal_local,goal_visit)
 
 
