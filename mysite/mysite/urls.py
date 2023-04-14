@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from league import views
+app_name = 'league'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('league/', include('league.urls')),

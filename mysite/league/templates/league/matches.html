@@ -1,0 +1,9 @@
+{% extends "league/base.html" %}
+
+{% block content %}
+<ul>
+    {% for match in league.matches.all %}
+        <li><a href="{% url 'league:match' match.id %}">{{ match }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

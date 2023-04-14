@@ -2,6 +2,8 @@ from django.shortcuts import render
 from .models import *
 from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
+from django import forms
+from django.shortcuts import redirect
 
 # Create your views here.
 def leagues(request):
@@ -25,7 +27,7 @@ def infoMatch(request, match_id):
 
 def leagueMatches(request, league_id):
     league = get_object_or_404(Competition, pk=league_id)
-    return render(request, 'league/leagueMatches.html', {
+    return render(request, 'league/matches.html', {
         'league': league
     })
 
@@ -59,3 +61,17 @@ def clasification(request, league_id):
         'league': league,
         'teams': clasification_order,
     })
+
+class MenuForm(forms.Form):
+    lliga = forms.ModelChoiceField(queryset=Competition.objects.all())
+ 
+def menu(request):
+    form = MenuForm()
+    if request.method == "POST":
+        form = MenuForm(request.POST)
+        if form.is_valid():
+            lliga = form.cleaned_data.get("lliga")
+            return redirect('league:clasification',lliga.id)
+    return render(request, "league/menu.html",{
+                    "form": form,
+            })

@@ -35,7 +35,7 @@ class Match(models.Model):
     local = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='local')
     visitant = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='visitant')
     date = models.DateTimeField(null=True, blank=True)
-    league = models.ForeignKey(Competition, on_delete=models.CASCADE, related_name='league')
+    league = models.ForeignKey(Competition, on_delete=models.CASCADE, related_name='matches')
     def __str__(self):
         return '{} vs {}'.format(self.local, self.visitant)
     
