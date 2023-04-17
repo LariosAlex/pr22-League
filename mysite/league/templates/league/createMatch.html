@@ -1,0 +1,24 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<form method="post">
+	{% csrf_token %}
+	<select id="league"></select>
+	<input type="submit" name="submit">
+</form>
+<script>
+	$(document).ready(function(){
+		$.getJSON('/league/api/get_leagues', function(data){
+			data.leagues.forEach(league => {
+				$('#league').append('<option value= "'+league.id+'">'+league.name+'</option>')
+			})
+		})
+		$('#league').on('change', function(){
+			league_id = $('#league').val();
+			$.getJSON('/league/api/get_teams/'+league_id, function(data){
+				$('form').append('<select id="local"></select>');
+				data.teams.forEach(team => {
+					$('#local').append('<option value= "'+team.id+'">'+team.name+'</option>')
+				})
+			})
+		})
+	})
+</script>

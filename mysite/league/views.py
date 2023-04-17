@@ -75,3 +75,68 @@ def menu(request):
     return render(request, "league/menu.html",{
                     "form": form,
             })
+
+class MenuForm(forms.Form):
+    lliga = forms.ModelChoiceField(queryset=Competition.objects.all())
+ 
+def menu(request):
+    form = MenuForm()
+    if request.method == "POST":
+        form = MenuForm(request.POST)
+        if form.is_valid():
+            lliga = form.cleaned_data.get("lliga")
+            return redirect('league:clasification',lliga.id)
+    return render(request, "league/menu.html",{
+                    "form": form,
+            })
+
+class LeagueForm(forms.ModelForm):
+    class Meta:
+        model = Competition
+        fields = ['name', 'country', 'teams']
+
+def createLeague(request):
+    form = LeagueForm()
+    message = ''
+
+    if request.method == 'POST':
+        form = LeagueForm(request.POST)
+        if form.is_valid:
+            leagueName = form.cleaned_data.get('name')
+            if Competition.objects.filter(name = leagueName):
+                message = 'El nom de la lliga ja existeix'
+            else:
+                message = 'La lliga ha sigut creada correctament'
+                form.save();
+
+    return render(request, "league/addLeague.html",{
+        "form": form,
+        "message" : message
+    })
+
+class TeamForm(forms.ModelForm):
+    class Meta:
+        model = Team
+        fields = ['name', 'players']
+
+def createTeam(request):
+    form = TeamForm()
+    message = ''
+
+    if request.method == 'POST':
+        form = LeagueForm(request.POST)
+        if form.is_valid:
+            teamName = form.cleaned_data.get('name')
+            if Competition.objects.filter(name = teamName):
+                message = 'El nom del equip ja existeix'
+            else:
+                message = 'El equip ha sigut creat correctament'
+                form.save();
+
+    return render(request, "league/addTeam.html",{
+        "form": form,
+        "message" : message
+    })
+
+def createMatch(request):
+    return render(request,'league/createMatch.html')
