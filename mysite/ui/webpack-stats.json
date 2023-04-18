@@ -1,0 +1,42 @@
+{
+  "status": "done",
+  "assets": {
+    "css/main.2cf79ad6.css": {
+      "name": "css/main.2cf79ad6.css",
+      "path": "/home/larios/Escritorio/djangoProjects/pr22-League/mysite/ui/dist/css/main.2cf79ad6.css",
+      "publicPath": "http://0.0.0.0:8080/css/main.2cf79ad6.css"
+    },
+    "favicon.ico": {
+      "name": "favicon.ico",
+      "path": "/home/larios/Escritorio/djangoProjects/pr22-League/mysite/ui/dist/favicon.ico",
+      "publicPath": "http://0.0.0.0:8080/favicon.ico"
+    },
+    "index.html": {
+      "name": "index.html",
+      "path": "/home/larios/Escritorio/djangoProjects/pr22-League/mysite/ui/dist/index.html",
+      "publicPath": "http://0.0.0.0:8080/index.html"
+    },
+    "js/main.de245081.js": {
+      "name": "js/main.de245081.js",
+      "path": "/home/larios/Escritorio/djangoProjects/pr22-League/mysite/ui/dist/js/main.de245081.js",
+      "publicPath": "http://0.0.0.0:8080/js/main.de245081.js"
+    },
+    "js/main.de245081.js.map": {
+      "name": "js/main.de245081.js.map",
+      "path": "/home/larios/Escritorio/djangoProjects/pr22-League/mysite/ui/dist/js/main.de245081.js.map",
+      "publicPath": "http://0.0.0.0:8080/js/main.de245081.js.map"
+    },
+    "main.html": {
+      "name": "main.html",
+      "path": "/home/larios/Escritorio/djangoProjects/pr22-League/mysite/ui/dist/main.html",
+      "publicPath": "http://0.0.0.0:8080/main.html"
+    }
+  },
+  "chunks": {
+    "main": [
+      "css/main.2cf79ad6.css",
+      "js/main.de245081.js"
+    ]
+  },
+  "publicPath": "http://0.0.0.0:8080/"
+}

@@ -140,3 +140,6 @@ def createTeam(request):
 
 def createMatch(request):
     return render(request,'league/createMatch.html')
+
+def vue(request):
+    return render(request, 'league/vue.html')

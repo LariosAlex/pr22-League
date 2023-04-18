@@ -14,6 +14,8 @@ urlpatterns = [
     path('createTeam/', views.createTeam, name='addTeam'),
     path('match/', views.createMatch, name='createMatch'),
 
+    path('vue/', views.vue, name='vue'),
+
 
 
     path('api/get_leagues', api.getLeagues, name='getLeagues'),
